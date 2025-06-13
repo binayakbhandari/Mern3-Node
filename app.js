@@ -11,11 +11,7 @@ const fs = require('fs')
 connectToDatabase()
 
 
-app.get("/", (req, res) => {
-    res.status(200).json({
-        message: "This is home page."
-    })
-})
+
 
 app.post("/blog", upload.single('image'), async (req, res) => {
     const { title, subtitle, description, image } = req.body
@@ -27,7 +23,7 @@ app.post("/blog", upload.single('image'), async (req, res) => {
     }
     await Blog.create({
         title: title,
-        subtitle: subtitle,
+        subtitle: subtitle,                                             
         description: description,
         image: fileName
     })
@@ -93,7 +89,7 @@ app.put("/blog/:id", upload.single('image'), async (req, res)=>{
     const blog = await Blog.findById(id)
     if(!blog){
         return res.status(404).json({ 
-            message: "Blog not found" 
+            message: "Blog not found !" 
         })
     }
 

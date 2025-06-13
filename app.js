@@ -11,7 +11,11 @@ const fs = require('fs')
 connectToDatabase()
 
 
-
+app.get("/", (req, res) => {
+    res.status(200).json({
+        message: "This is home page."
+    })
+})
 
 app.post("/blog", upload.single('image'), async (req, res) => {
     const { title, subtitle, description, image } = req.body
